@@ -1,0 +1,37 @@
+﻿Spalte;Bedeutung / Erklärung
+Run Name;Der Name des Experiments (z. B. run13), entspricht dem Ordnernamen unter exp/fassade/.
+Timestamp;Datum und Uhrzeit, wann der Report bzw. das Logfile zuletzt aktualisiert wurde.
+mIoU;Mean Intersection over Union. Die wichtigste Metrik. Der Durchschnitt der IoU aller Klassen. (Höher ist besser, 1.0 = Perfekt).
+mAcc;Mean Accuracy. Die durchschnittliche Genauigkeit der Klassenklassifizierung (ohne Berücksichtigung der Objektgröße).
+allAcc;"Overall Accuracy. Prozentsatz aller Punkte in der Wolke, die korrekt klassifiziert wurden (wird oft durch große Klassen wie ""Sonstiges"" dominiert)."
+Final Train Loss;Der Fehlerwert (Loss) am Ende des Trainings. Ein sehr niedriger Wert (< 0.5) bei gleichzeitig hohem Val Loss deutet auf Overfitting hin.
+Final Val Loss;Der Fehlerwert bei der Validierung mit unbekannten Daten. Sollte idealerweise sinken und nah am Train Loss liegen.
+Epochs;Die in der Config eingestellte geplante Anzahl an Epochen (z. B. 300).
+Epochs Reached;"Die tatsächlich erreichte Epoche. Wenn hier z. B. ""2"" steht statt ""300"", ist das Training abgebrochen."
+Training Duration;"Die gesamte Laufzeit des Trainings (z. B. ""3h 34m"")."
+Loss Weight (CE);Gewichtung des Cross Entropy Loss. Bestimmt, wie stark die Standard-Klassifizierung in den Gesamtfehler eingeht.
+Loss Weight (Lovasz);Gewichtung des Lovasz-Softmax Loss. Dieser Loss optimiert direkt die IoU-Metrik. Ein höherer Wert (z. B. 2.0) hilft oft bei unbalancierten Klassen.
+Class Weights;"Eine Liste von Faktoren (z. B. [0.1, 1.0, ...]), die angibt, wie wichtig jede Klasse ist. Niedrige Werte für ""Sonstiges"" (0.1) sagen dem Modell, dass Fehler dort weniger schlimm sind."
+Loop Factor;Gibt an, wie oft die Trainingsdaten pro Epoche künstlich vervielfältigt wurden, um die Epoche zu verlängern (z. B. 10.0x).
+Voxel Size;Die Größe der Rasterwürfel (in Metern, z. B. 0.05 = 5cm), auf die die Punktwolke heruntergebrochen wird (Downsampling).
+SphereCrop Points;Maximale Anzahl an Punkten, die während des Trainings aus einer Kugel ausgeschnitten werden (Input-Größe für das Netz).
+Augmentations;Liste der verwendeten Techniken zur künstlichen Datenveränderung (Rotation, Skalierung, Rauschen), um das Modell robuster zu machen.
+Input Features;Die Informationen, die das Netz pro Punkt bekommt (z. B. color=RGB, normal=Normalenvektor, strength=Intensität).
+Pretrained;Pfad zu den vortrainierten Gewichten (z. B. scannet-spunet.pth), mit denen das Training gestartet wurde (Transfer Learning).
+Num Classes;Anzahl der zu erkennenden Klassen (hier 9).
+LR;Learning Rate. Die Schrittweite, mit der das Modell lernt. Zu hoch = Instabil, Zu niedrig = Lernt nicht.
+Batch Size;Anzahl der Punktwolken-Ausschnitte, die das Netz gleichzeitig verarbeitet, bevor es lernt.
+Optimizer;Der Algorithmus, der das Netzwerk optimiert (hier AdamW).
+Train/Val Files;Liste der Dateinamen, die für Training bzw. Validierung verwendet wurden.
+Model Type;Die Art des Segmentierungs-Frameworks (meist DefaultSegmentor).
+Backbone;Die eigentliche neuronale Netzwerk-Architektur (z. B. SpUNet-v1m1).
+IoU_[Klasse];Die Intersection over Union spezifisch für eine Klasse (z. B. IoU_Backstein). Zeigt, wie gut dieses spezifische Material erkannt wurde.
+Acc_[Klasse];Die Genauigkeit (Accuracy) spezifisch für eine Klasse.
+AMP;Automatic Mixed Precision. True = nutzt halbe Genauigkeit (schneller, weniger Speicher), False = volle Genauigkeit (stabiler).
+Backbone Channels;Anzahl der Feature-Kanäle in den Schichten des Netzwerks (bestimmt die Modellgröße).
+Data Root;Ordnerpfad zu den Daten.
+Log File;Name der Log-Datei, aus der die Daten stammen.
+Num Worker;Anzahl der CPU-Prozesse, die Daten im Hintergrund laden.
+Scheduler;Strategie zur Anpassung der Learning Rate während des Trainings (z. B. OneCycleLR).
+SphereCrop Mode;Strategie beim Ausschneiden (random = zufällig im Training, center = mittig bei Validierung).
+Weight Decay;"Ein Parameter zur Regularisierung, der verhindert, dass das Modell die Trainingsdaten ""auswendig lernt"" (Overfitting)."

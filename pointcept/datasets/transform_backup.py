@@ -33,7 +33,6 @@ def index_operator(data_dict, index, duplicate=False):
             "strength",
             "segment",
             "instance",
-            "extra_features",  # <--- HIER HINZUGEFÜGT (WICHTIG!)
         ]
     if not duplicate:
         for key in data_dict["index_valid_keys"]:

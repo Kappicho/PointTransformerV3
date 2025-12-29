@@ -1,16 +1,26 @@
-image/
-__pycache__
+# Große Datenordner (Deine Punktwolken & Ergebnisse)
+data/
+exp/
+
+# Kompilierte Binärdateien (egal wie tief sie liegen)
+**/*.so
+**/*.o
+**/*.pyc
+**/.ninja_*
 **/build/
-**/*.egg-info/
 **/dist/
-*.so
-exp
-weights
-data
-*log*
-outputs/
-.vscode
-.idea
-*/.DS_Store
-**/*.out
-Dockerfile
+**/*.egg-info/
+
+# Modell-Gewichte
+*.pth
+*.ckpt
+
+# Python & Jupyter
+__pycache__/
+.ipynb_checkpoints/
+
+# System & IDE
+.DS_Store
+.vscode/
+.idea/
+*.log

@@ -40,7 +40,6 @@ class DefaultDataset(Dataset):
         "normal",
         "strength",
         "intensity",
-        "extra_features",  # <--- NEU HINZUGEFÜGT
         "segment",
         "instance",
         "pose",
@@ -134,11 +133,6 @@ class DefaultDataset(Dataset):
             
         if "intensity" in data_dict.keys():
             data_dict["intensity"] = data_dict["intensity"].astype(np.float32)
-            
-        # --- NEU HINZUGEFÜGT ---
-        if "extra_features" in data_dict.keys():
-            data_dict["extra_features"] = data_dict["extra_features"].astype(np.float32)
-        # -----------------------
 
         if "segment" in data_dict.keys():
             data_dict["segment"] = data_dict["segment"].reshape([-1]).astype(np.int32)

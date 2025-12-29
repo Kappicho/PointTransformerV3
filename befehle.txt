@@ -1,0 +1,30 @@
+conda activate ptv3                                                                                                     # projekt aktivieren nach server neustart
+cd ~/projekt8/PointTransformerV3/Pointcept                                                                              # in Hauptverzeichnis navigieren
+
+sh full_pipeline.sh -p python -g 1 -d fassade -c server_ptv3 -n run00                                                   # normaler Trainingsbefehl ohne detachment
+ 'trainingsskript'   'skriptsprache' 'anzahl gpu' 'datenordner'  'configname'  'name des runs'
+
+sh full_pipeline.sh -p python -g 1 -d fassade -c server_ptv3 -n run00 -r true                                           # normaler Trainingsbefehl ohne detachment mit trainings resume
+
+nohup sh full_pipeline.sh -p python -g 1 -d fassade -c server_ptv3 -n run00 -r true > pipeline_status.log 2>&1 &        # Trainingsbefehl mit detachment mit training weitermachen an model last 
+nohup sh full_pipeline.sh -p python -g 1 -d fassade -c server_ptv3 -n run00 > pipeline_status.log 2>&1 &                # Trainingsbefehl mit detachment ohne training resume. Run überschreiben
+
+tail -f pipeline_status.log                                                                                             #um trotz detachment output im eigenen terminal zu sehen
+
+nvidia-smi                                                                                                              # Aktivität auf grafikkarte prüfen, PID von prozessen finden
+kill -9 12345                                                                                                           # Prozess mit dieser ID beenden
+pkill -9 python                                                                                                         # alle Python Prozesse beenden
+
+python skript.py                                                                                                        #skript ausführen. falls nicht im Hauptverzeichnis pfad angeben
+python tools/report_csv.py -e exp/fassade/run00                                                                         #report_csv manuell aktualisieren für bestimmten run in verzeichnis exp dir 
+
+Strg + C                                                                                                                # bricht aktuellen prozess ab 
+
+df -h .                                                                                                                 #freien Speicherplatz überprüfen
+
+du -sh exp/fassade/run13 -s -h                                                                                          #speicherbedarf eines ordners prüfen
+
+rm -rf data/fassade/cache                                                                                               #ordner mit allen unterordnern löschen ohne nachfragen
+rm -rf data/fassade/cache/*                                                                                             #inhalte eines ordners löschen ohne ordner selbst zu löschen                 
+ls data/fassade/cache | wc -l                                                                                           #dateien in verzeichnis zählen
+ls -1 /pfad/zum/ordner | sort > dateinamen.txt                                                                          #dateien in verzeichnis in txt datei schreiben

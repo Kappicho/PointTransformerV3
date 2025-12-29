@@ -26,7 +26,10 @@ setup(
         CUDAExtension(
             name="pointops._C",
             sources=sources,
-            extra_compile_args={"cxx": ["-g"], "nvcc": ["-O2"]},
+            extra_compile_args={"cxx": ["-g"], 
+                                "nvcc": ["-O2",'-allow-unsupported-compiler']
+                               },
+            
         )
     ],
     cmdclass={"build_ext": BuildExtension},
